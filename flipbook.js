@@ -33,10 +33,13 @@
   let elPrev, elNext, elFirst, elLast, elCounter, elFill, elLoading, elLoadingText, elThumbsScroll;
   let elCastShadow, elShadeFront, elShadeBack, elSoundBtn, elSoundIcon, elFullscreenBtn;
 
-  /* ─── Spread Model ────────────────────────────────────────────────────────── */
+  function isSinglePage() {
+    return window.innerWidth < 768;
+  }
+
   function lPage(k) { return k === 0 ? 0 : 2 * k; }
   function rPage(k) { const p = 2 * k + 1; return p <= fb.N ? p : 0; }
-  function calcTotal(N) { return Math.floor(N / 2) + 1; }
+  function calcTotal(N) { return isSinglePage() ? N : (Math.floor(N / 2) + 1); }
 
   /* ─── Web Audio API: Realistic Paper Turn Sound ───────────────────────────── */
   function playPaperSound() {
@@ -156,6 +159,10 @@
     const isFull = elScene && elScene.classList.contains('is-fullscreen');
     const winW = window.innerWidth;
     const winH = window.innerHeight;
+    const single = isSinglePage();
+
+    fb.totalSpreads = calcTotal(fb.N);
+    if (fb.spread >= fb.totalSpreads) fb.spread = fb.totalSpreads - 1;
 
     let availW;
     let screenH;
@@ -165,34 +172,51 @@
       screenH = Math.max(winH - 120, 360);
     } else {
       const containerW = Math.min(winW, 1200);
-      // Account for padding and casing borders
       const isMobile = winW < 640;
       const pad = isMobile ? 24 : (winW < 992 ? 40 : 64);
       availW = Math.max(containerW - pad, 260);
-      screenH = isMobile ? Math.min(winH * 0.65, 480) : Math.min(winH * 0.72, 600);
+      screenH = isMobile ? Math.min(winH * 0.72, 540) : Math.min(winH * 0.72, 600);
     }
 
-    // In A4 portrait: 1 page is 210 x 297 mm -> ratio = 1 / 1.4142 = 0.7071
-    // Spread (2 pages) width = 2 * pageW
-    let targetPageW = Math.floor(availW / 2);
-    let targetPageH = Math.round(targetPageW * 1.4142);
+    let targetPageW, targetPageH;
 
-    if (targetPageH > screenH) {
-      targetPageH = Math.round(screenH);
-      targetPageW = Math.floor(targetPageH / 1.4142);
+    if (single) {
+      targetPageW = Math.min(availW, 460);
+      targetPageH = Math.round(targetPageW * 1.4142);
+      if (targetPageH > screenH) {
+        targetPageH = Math.round(screenH);
+        targetPageW = Math.floor(targetPageH / 1.4142);
+      }
+    } else {
+      targetPageW = Math.floor(availW / 2);
+      targetPageH = Math.round(targetPageW * 1.4142);
+      if (targetPageH > screenH) {
+        targetPageH = Math.round(screenH);
+        targetPageW = Math.floor(targetPageH / 1.4142);
+      }
     }
 
-    // Safety boundary
-    fb.pageW = Math.max(targetPageW, 130);
-    fb.pageH = Math.max(targetPageH, 184);
+    fb.pageW = Math.max(targetPageW, 140);
+    fb.pageH = Math.max(targetPageH, 198);
 
     if (elLeft && elLeft.parentElement) {
       elLeft.parentElement.style.width = fb.pageW + 'px';
       elLeft.parentElement.style.height = fb.pageH + 'px';
+      elLeft.parentElement.style.display = single ? 'none' : 'block';
     }
+    const spineEl = document.getElementById('fbSpine');
+    if (spineEl) spineEl.style.display = single ? 'none' : 'block';
+
+    const edgeLeft = document.querySelector('.fb-edge-stack.left');
+    if (edgeLeft) edgeLeft.style.display = single ? 'none' : 'block';
+
+    const ribbonEl = document.querySelector('.fb-ribbon');
+    if (ribbonEl) ribbonEl.style.display = single ? 'none' : 'block';
+
     if (elRight && elRight.parentElement) {
       elRight.parentElement.style.width = fb.pageW + 'px';
       elRight.parentElement.style.height = fb.pageH + 'px';
+      elRight.parentElement.style.borderRadius = single ? '8px' : '0 4px 4px 0';
     }
     if (elFlip) {
       elFlip.style.width = fb.pageW + 'px';
@@ -202,40 +226,66 @@
 
   /* ─── Render Spread ───────────────────────────────────────────────────────── */
   async function renderSpread(k) {
-    await Promise.all([
-      renderPageToCanvas(elLeft, lPage(k)),
-      renderPageToCanvas(elRight, rPage(k))
-    ]);
+    if (isSinglePage()) {
+      const pageNum = k + 1;
+      await renderPageToCanvas(elRight, pageNum);
+    } else {
+      await Promise.all([
+        renderPageToCanvas(elLeft, lPage(k)),
+        renderPageToCanvas(elRight, rPage(k))
+      ]);
+    }
     updateUI(k);
 
     setTimeout(() => {
-      const nextL = lPage(k + 1);
-      const nextR = rPage(k + 1);
-      const prevL = lPage(k - 1);
-      const prevR = rPage(k - 1);
-      [nextL, nextR, prevL, prevR].forEach(p => {
-        if (p > 0 && p <= fb.N && !fb.cache[p]) {
-          const temp = document.createElement('canvas');
-          renderPageToCanvas(temp, p);
-        }
-      });
+      if (isSinglePage()) {
+        const next = k + 2;
+        const prev = k;
+        [next, prev].forEach(p => {
+          if (p > 0 && p <= fb.N && !fb.cache[p]) {
+            const temp = document.createElement('canvas');
+            renderPageToCanvas(temp, p);
+          }
+        });
+      } else {
+        const nextL = lPage(k + 1);
+        const nextR = rPage(k + 1);
+        const prevL = lPage(k - 1);
+        const prevR = rPage(k - 1);
+        [nextL, nextR, prevL, prevR].forEach(p => {
+          if (p > 0 && p <= fb.N && !fb.cache[p]) {
+            const temp = document.createElement('canvas');
+            renderPageToCanvas(temp, p);
+          }
+        });
+      }
     }, 150);
   }
 
   /* ─── UI Status Updates ───────────────────────────────────────────────────── */
   function updateUI(k) {
-    const lp = lPage(k);
-    const rp = rPage(k);
-
     let txt = '';
-    if (k === 0) {
-      txt = fb.lang === 'en' ? 'Cover' : 'Couverture';
-    } else if (rp === 0) {
-      txt = fb.lang === 'en' ? ('Page ' + lp + ' (Back cover)') : ('Page ' + lp + ' (Dernière page)');
+    if (isSinglePage()) {
+      const pageNum = k + 1;
+      if (pageNum === 1) {
+        txt = fb.lang === 'en' ? 'Cover (Page 1 / 56)' : 'Couverture (1 / 56)';
+      } else {
+        txt = fb.lang === 'en'
+          ? ('Page ' + pageNum + ' of ' + fb.N)
+          : ('Page ' + pageNum + ' sur ' + fb.N);
+      }
     } else {
-      txt = fb.lang === 'en'
-        ? ('Pages ' + lp + '–' + rp + ' of ' + fb.N)
-        : ('Pages ' + lp + '–' + rp + ' sur ' + fb.N);
+      const lp = lPage(k);
+      const rp = rPage(k);
+      if (k === 0) {
+        txt = fb.lang === 'en' ? 'Cover' : 'Couverture';
+      } else if (rp === 0) {
+        txt = fb.lang === 'en' ? ('Page ' + lp + ' (Back cover)') : ('Page ' + lp + ' (Dernière page)');
+      } else {
+        txt = fb.lang === 'en'
+          ? ('Pages ' + lp + '–' + rp + ' of ' + fb.N)
+          : ('Pages ' + lp + '–' + rp + ' sur ' + fb.N);
+      }
     }
 
     if (elCounter) elCounter.textContent = txt;
@@ -267,6 +317,32 @@
 
     fb.animating = true;
     playPaperSound();
+
+    if (isSinglePage()) {
+      try {
+        if (elRight) {
+          elRight.style.transition = 'opacity 0.18s ease, transform 0.18s ease';
+          elRight.style.opacity = '0.35';
+          elRight.style.transform = direction === 'fwd' ? 'translateX(-12px)' : 'translateX(12px)';
+        }
+        await renderSpread(next);
+        if (elRight) {
+          elRight.style.opacity = '1';
+          elRight.style.transform = 'translateX(0)';
+        }
+        fb.spread = next;
+        updateUI(next);
+      } finally {
+        setTimeout(() => {
+          if (elRight) {
+            elRight.style.transition = 'none';
+            elRight.style.transform = 'none';
+          }
+          fb.animating = false;
+        }, 180);
+      }
+      return;
+    }
 
     const spineEl = document.getElementById('fbSpine');
     const spineW = spineEl ? spineEl.offsetWidth : 18;
@@ -418,10 +494,20 @@
     fb.thumbsDone = true;
     elThumbsScroll.innerHTML = '';
 
+    const single = isSinglePage();
     for (let k = 0; k < fb.totalSpreads; k++) {
-      const rp = rPage(k);
-      const lp = lPage(k);
-      const pageToRender = (k === 0 || !lp) ? (rp || 1) : lp;
+      let pageToRender;
+      let labelText;
+
+      if (single) {
+        pageToRender = k + 1;
+        labelText = k === 0 ? (fb.lang === 'en' ? 'Cover' : 'Couv.') : ('p.' + (k + 1));
+      } else {
+        const rp = rPage(k);
+        const lp = lPage(k);
+        pageToRender = (k === 0 || !lp) ? (rp || 1) : lp;
+        labelText = k === 0 ? (fb.lang === 'en' ? 'Cover' : 'Couv.') : (rp ? (lp + '–' + rp) : ('' + lp));
+      }
 
       const item = document.createElement('div');
       item.className = 'fb-thumb' + (k === fb.spread ? ' active' : '');
@@ -435,7 +521,7 @@
 
       const label = document.createElement('span');
       label.className = 'fb-thumb-label';
-      label.textContent = k === 0 ? (fb.lang === 'en' ? 'Cover' : 'Couv.') : (rp ? (lp + '–' + rp) : ('' + lp));
+      label.textContent = labelText;
 
       item.appendChild(canvas);
       item.appendChild(label);

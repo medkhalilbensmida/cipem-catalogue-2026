@@ -668,19 +668,21 @@ function openDomainModal(domainId) {
   }).join('');
 
   modalCoursesBody.innerHTML = `
-    <table class="courses-table">
-      <thead>
-        <tr>
-          <th style="width: 65%;">${t.modalTableCol1}</th>
-          <th class="center" style="width: 13%;">${t.modalTableCol2}</th>
-          <th class="center" style="width: 11%;">${t.modalTableCol3}</th>
-          <th class="center" style="width: 11%;">${t.modalTableCol4}</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${tableRows}
-      </tbody>
-    </table>
+    <div class="modal-courses-table-wrap">
+      <table class="courses-table">
+        <thead>
+          <tr>
+            <th style="width: 60%;">${t.modalTableCol1}</th>
+            <th class="center" style="width: 14%;">${t.modalTableCol2}</th>
+            <th class="center" style="width: 13%;">${t.modalTableCol3}</th>
+            <th class="center" style="width: 13%;">${t.modalTableCol4}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+    </div>
     <div style="margin-top: 20px; padding: 14px 18px; background: #F8FAFC; border-radius: 8px; border: 1px solid #E2E8F0; font-size: 0.88rem; color: #475569;">
       ${t.modalNotice}
     </div>
