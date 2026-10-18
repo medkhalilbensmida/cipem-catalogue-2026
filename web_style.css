@@ -1294,19 +1294,228 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-/* ── Responsive ── */
-@media (max-width: 992px) {
-  .hero-title { font-size: 2.4rem; }
-  .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-grid { grid-template-columns: 1fr; }
-  .about-features-grid { grid-template-columns: 1fr; }
-  .contact-cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .nav-links { display: none; }
+/* ═══════════════════════════════════════════════════════════════════════════
+   Comprehensive Responsive System (Mobile, Tablet, Desktop)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet & Laptop (< 1024px) ── */
+@media (max-width: 1024px) {
+  .hero .container {
+    grid-template-columns: 1fr 360px;
+    gap: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .hero-title {
+    font-size: 2.4rem;
+  }
+  .domains-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
 }
 
-@media (max-width: 640px) {
-  .hero-title { font-size: 1.9rem; }
-  .domains-grid { grid-template-columns: 1fr; }
-  .hero-stats-grid { grid-template-columns: 1fr; }
-  .contact-cards-grid { grid-template-columns: 1fr; }
+/* ── Tablet Portrait & Below (< 992px) ── */
+@media (max-width: 992px) {
+  .top-notice-right .top-contact-link:not(:first-child) {
+    display: none;
+  }
+  .nav-links {
+    display: none;
+  }
+  .hero .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 40px;
+    padding-bottom: 50px;
+  }
+  .hero-side-panel {
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .about-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contact-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Filter bar layout on tablet */
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .catalogue-search-bar {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .pole-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .pole-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .results-count-badge {
+    margin-left: 0;
+  }
+}
+
+/* ── Mobile Devices (< 768px) ── */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  .top-notice-text {
+    display: none;
+  }
+  .top-notice-sep {
+    display: none;
+  }
+  .top-notice-bar .container {
+    justify-content: space-between;
+  }
+  .navbar .container {
+    height: 62px;
+  }
+  .nav-brand img {
+    height: 38px;
+  }
+  .nav-divider {
+    display: none;
+  }
+  .nav-brand-subtitle {
+    display: none;
+  }
+  .nav-brand-title {
+    font-size: 1rem;
+  }
+  .nav-actions .btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  #navPdfText {
+    display: inline;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+  .hero-pill {
+    margin-bottom: 18px;
+    font-size: 0.72rem;
+  }
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+  }
+  .hero-search-wrapper {
+    flex-direction: column;
+    padding: 6px;
+    border-radius: var(--radius-lg);
+  }
+  .hero-search-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--radius-md);
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  /* Modal on Mobile */
+  .modal-container {
+    width: 95%;
+    max-height: 92vh;
+    border-radius: 16px;
+  }
+  .modal-header {
+    padding: 16px 20px;
+  }
+  .modal-header-title {
+    font-size: 1.2rem;
+  }
+  .modal-body {
+    padding: 16px;
+    overflow-x: auto;
+  }
+  .courses-table th, 
+  .courses-table td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* About and Contact */
+  .about-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .footer-official-text {
+    font-size: 0.76rem;
+    line-height: 1.6;
+  }
+}
+
+/* ── Small Mobile Phones (< 480px) ── */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.7rem;
+  }
+  .hero-accred-num {
+    font-size: 1.4rem;
+  }
+  .hero-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .hero-stat-card {
+    padding: 12px 10px;
+  }
+  .hero-stat-num {
+    font-size: 1.4rem;
+  }
+  .hero-stat-label {
+    font-size: 0.74rem;
+  }
+  .hero-stat-sub {
+    font-size: 0.65rem;
+  }
+
+  .domains-grid {
+    grid-template-columns: 1fr;
+  }
+  .domain-card-img-wrap {
+    height: 170px;
+  }
+  .domain-card-body {
+    padding: 18px;
+  }
+  .domain-card-title {
+    font-size: 1.15rem;
+  }
+
+  #navPdfText {
+    display: none;
+  }
+  .nav-actions .btn {
+    padding: 6px 10px;
+  }
 }

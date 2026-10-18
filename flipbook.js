@@ -154,22 +154,37 @@
   /* ─── Sizing & Layout Calculation ─────────────────────────────────────────── */
   function computeDimensions() {
     const isFull = elScene && elScene.classList.contains('is-fullscreen');
-    const screenW = isFull ? window.innerWidth - 60 : Math.min(window.innerWidth - 48, 1180);
-    const screenH = isFull ? window.innerHeight - 130 : 620;
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
 
-    const availW = Math.max(screenW - 58, 480);
-    // In A4 portrait: 1 page is 210 x 297 mm -> ratio = 1 / 1.4142 = 0.7071
-    // Spread (2 pages) is 420 x 297 mm -> ratio = 1.4142
-    let targetPageH = screenH;
-    let targetPageW = Math.round(targetPageH / 1.4142);
+    let availW;
+    let screenH;
 
-    if (targetPageW * 2 > availW) {
-      targetPageW = Math.floor(availW / 2);
-      targetPageH = Math.round(targetPageW * 1.4142);
+    if (isFull) {
+      availW = Math.max(winW - 32, 280);
+      screenH = Math.max(winH - 120, 360);
+    } else {
+      const containerW = Math.min(winW, 1200);
+      // Account for padding and casing borders
+      const isMobile = winW < 640;
+      const pad = isMobile ? 24 : (winW < 992 ? 40 : 64);
+      availW = Math.max(containerW - pad, 260);
+      screenH = isMobile ? Math.min(winH * 0.65, 480) : Math.min(winH * 0.72, 600);
     }
 
-    fb.pageW = targetPageW;
-    fb.pageH = targetPageH;
+    // In A4 portrait: 1 page is 210 x 297 mm -> ratio = 1 / 1.4142 = 0.7071
+    // Spread (2 pages) width = 2 * pageW
+    let targetPageW = Math.floor(availW / 2);
+    let targetPageH = Math.round(targetPageW * 1.4142);
+
+    if (targetPageH > screenH) {
+      targetPageH = Math.round(screenH);
+      targetPageW = Math.floor(targetPageH / 1.4142);
+    }
+
+    // Safety boundary
+    fb.pageW = Math.max(targetPageW, 130);
+    fb.pageH = Math.max(targetPageH, 184);
 
     if (elLeft && elLeft.parentElement) {
       elLeft.parentElement.style.width = fb.pageW + 'px';
@@ -491,6 +506,30 @@
         toggleFullscreen();
       }
     });
+
+    /* Touch Swipe for Mobile & Tablets */
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const bookOuter = document.querySelector('.fb-book-outer') || elBook;
+    if (bookOuter) {
+      bookOuter.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      bookOuter.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches.length === 1) {
+          const diffX = e.changedTouches[0].clientX - touchStartX;
+          const diffY = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX < 0) doFlip('fwd');
+            else doFlip('bwd');
+          }
+        }
+      }, { passive: true });
+    }
 
     window.addEventListener('resize', debounce(() => {
       computeDimensions();

@@ -673,3 +673,64 @@
 .fb-scene.is-fullscreen .fb-book-outer {
   max-height: 85vh;
 }
+
+/* ─── Flipbook Responsive Breakpoints ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .flipbook-section {
+    padding: 50px 0 45px;
+  }
+  .fb-header {
+    margin-bottom: 24px;
+  }
+  .fb-title {
+    font-size: 1.8rem;
+  }
+  .fb-casing {
+    padding: 8px 10px 10px;
+    border-radius: 8px;
+  }
+  .fb-edge-stack {
+    width: 6px;
+  }
+  .fb-controls {
+    padding: 6px 14px;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 20px;
+  }
+  .fb-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  .fb-icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .fb-info-block {
+    min-width: 120px;
+  }
+  .fb-counter {
+    font-size: 0.8rem;
+  }
+  .fb-kbd-hint {
+    display: none;
+  }
+  .fb-thumbs-outer {
+    padding: 10px 14px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fb-controls-sep {
+    display: none;
+  }
+  #fbFirst, #fbLast {
+    display: none;
+  }
+  .fb-controls {
+    width: 100%;
+    max-width: 340px;
+  }
+}
