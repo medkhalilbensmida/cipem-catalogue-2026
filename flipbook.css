@@ -675,7 +675,16 @@
 }
 
 /* ─── Flipbook Responsive Breakpoints ────────────────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
+  .fb-page-left,
+  .fb-spine,
+  .fb-edge-stack.left,
+  .fb-ribbon {
+    display: none !important;
+  }
+  .fb-page-right {
+    border-radius: 6px !important;
+  }
   .flipbook-section {
     padding: 50px 0 45px;
   }

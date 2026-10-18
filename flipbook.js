@@ -34,7 +34,7 @@
   let elCastShadow, elShadeFront, elShadeBack, elSoundBtn, elSoundIcon, elFullscreenBtn;
 
   function isSinglePage() {
-    return window.innerWidth < 768;
+    return window.innerWidth < 920;
   }
 
   function lPage(k) { return k === 0 ? 0 : 2 * k; }
