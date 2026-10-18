@@ -1,0 +1,675 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CIPEM Flipbook — Ultra-Realistic 3D Catalogue Book Viewer
+   Fichier CSS autonome — ne touche pas au reste du site
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Section Container ──────────────────────────────────────────────────────── */
+.flipbook-section {
+  background: radial-gradient(circle at 50% 30%, #111b33 0%, #0a1122 55%, #050812 100%);
+  padding: 95px 0 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+.flipbook-section::before {
+  content: '';
+  position: absolute;
+  width: 950px;
+  height: 950px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 101, 34, 0.08) 0%, transparent 65%);
+  top: -350px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.flipbook-section::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+  bottom: -200px;
+  right: -100px;
+  pointer-events: none;
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────────── */
+.fb-header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.fb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(217, 101, 34, 0.12);
+  border: 1px solid rgba(217, 101, 34, 0.35);
+  color: #f97316;
+  padding: 7px 20px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(217, 101, 34, 0.15);
+}
+
+.fb-title {
+  color: #ffffff;
+  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+}
+
+.fb-title em {
+  font-style: normal;
+  background: linear-gradient(120deg, #f97316 20%, #fbbf24 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.fb-desc {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1.02rem;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ─── Scene Wrapper ──────────────────────────────────────────────────────────── */
+.fb-scene-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── The 3D Scene ───────────────────────────────────────────────────────────── */
+.fb-scene {
+  perspective: 2600px;
+  perspective-origin: 50% 45%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Book Outer ─────────────────────────────────────────────────────────────── */
+.fb-book-outer {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+}
+
+/* ─── Hardcover Luxury Casing ────────────────────────────────────────────────── */
+.fb-casing {
+  position: relative;
+  background: linear-gradient(135deg, #0d1726 0%, #16263d 50%, #0d1726 100%);
+  padding: 16px 20px 18px;
+  border-radius: 12px;
+  box-shadow: 
+    0 40px 80px -15px rgba(0, 0, 0, 0.8),
+    0 15px 35px -5px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* Metallic Corner Accents on Book Cover */
+.fb-casing::before,
+.fb-casing::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  border: 2px solid rgba(245, 158, 11, 0.4);
+  border-radius: 3px;
+}
+.fb-casing::before {
+  top: 6px;
+  left: 6px;
+  border-right: none;
+  border-bottom: none;
+}
+.fb-casing::after {
+  bottom: 6px;
+  right: 6px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ─── Stacked Paper Thickness Edges ──────────────────────────────────────────── */
+.fb-edge-stack {
+  position: absolute;
+  top: 19px;
+  bottom: 21px;
+  width: 12px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fb-edge-stack.left {
+  left: 8px;
+  background: linear-gradient(to right,
+    #9c8e77 0%, #b8ab94 15%, #dfd6c3 30%, #b8ab94 45%, #dfd6c3 60%,
+    #b8ab94 75%, #ebe3d3 90%, #f4ede0 100%
+  );
+  border-radius: 3px 0 0 3px;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.35);
+}
+
+.fb-edge-stack.right {
+  right: 8px;
+  background: linear-gradient(to left,
+    #9c8e77 0%, #b8ab94 15%, #dfd6c3 30%, #b8ab94 45%, #dfd6c3 60%,
+    #b8ab94 75%, #ebe3d3 90%, #f4ede0 100%
+  );
+  border-radius: 0 3px 3px 0;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.35);
+}
+
+/* ─── Silk Bookmark Ribbon ───────────────────────────────────────────────────── */
+.fb-ribbon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 38px;
+  background: linear-gradient(to bottom, #d96522 0%, #f97316 70%, #ea580c 100%);
+  z-index: 15;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+  pointer-events: none;
+  border-radius: 0 0 2px 2px;
+}
+
+.fb-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #ea580c;
+}
+
+/* ─── The Book Container ─────────────────────────────────────────────────────── */
+.fb-book {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  background: #fdfaf4;
+  border-radius: 3px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  transform-style: preserve-3d;
+  user-select: none;
+}
+
+/* ─── Page Containers ────────────────────────────────────────────────────────── */
+.fb-page-container {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.fb-page-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.fb-page-left {
+  border-radius: 4px 0 0 4px;
+}
+
+.fb-page-right {
+  border-radius: 0 4px 4px 0;
+}
+
+/* ─── Page Curvature & Depth Gradient ────────────────────────────────────────── */
+.fb-page-curvature {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Left page: subtle cylindrical lighting, darker crease near spine */
+.fb-page-curvature.left {
+  background: linear-gradient(to right,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(255, 255, 255, 0.08) 12%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.04) 88%,
+    rgba(0, 0, 0, 0.22) 97%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+
+/* Right page: darker crease near spine, subtle cylindrical lighting */
+.fb-page-curvature.right {
+  background: linear-gradient(to left,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(255, 255, 255, 0.08) 12%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.04) 88%,
+    rgba(0, 0, 0, 0.22) 97%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+
+/* ─── Corner Dog-Ear / Curl Invitation ───────────────────────────────────────── */
+.fb-page-corner {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* Bottom right corner of right page */
+.fb-page-corner.curl-right {
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(135deg, transparent 50%, rgba(217, 101, 34, 0.25) 50%, #ffffff 52%);
+  box-shadow: -3px -3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fb-page-right:hover .fb-page-corner.curl-right {
+  width: 36px;
+  height: 36px;
+}
+
+/* Bottom left corner of left page */
+.fb-page-corner.curl-left {
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(225deg, transparent 50%, rgba(217, 101, 34, 0.25) 50%, #ffffff 52%);
+  box-shadow: 3px -3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fb-page-left:hover .fb-page-corner.curl-left {
+  width: 36px;
+  height: 36px;
+}
+
+/* ─── Central Spine / Book Gutter ────────────────────────────────────────────── */
+.fb-spine {
+  width: 18px;
+  flex-shrink: 0;
+  background: linear-gradient(to right,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.2) 20%,
+    #111827 45%,
+    #1f2937 50%,
+    #111827 55%,
+    rgba(0,0,0,0.2) 80%,
+    rgba(0,0,0,0.45) 100%
+  );
+  position: relative;
+  z-index: 8;
+  box-shadow: 
+    inset 2px 0 5px rgba(0,0,0,0.7),
+    inset -2px 0 5px rgba(0,0,0,0.7);
+}
+
+.fb-spine-stitch {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 6px,
+    rgba(249, 115, 22, 0.4) 6px,
+    rgba(249, 115, 22, 0.4) 12px
+  );
+}
+
+/* ─── Dynamic Cast Shadow on Left Page during Page Turn ──────────────────────── */
+.fb-cast-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent 20%, rgba(0, 0, 0, 0.5) 100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.15s ease;
+}
+
+/* ─── 3D Page Turn Layer ─────────────────────────────────────────────────────── */
+.fb-flip {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform-style: preserve-3d;
+  visibility: hidden;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.fb-flip-front,
+.fb-flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.fb-flip-front canvas,
+.fb-flip-back canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.fb-flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Shading on turning leaf */
+.fb-leaf-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.1s linear;
+}
+
+.fb-leaf-shade.front {
+  background: linear-gradient(to left, rgba(0,0,0,0.3) 0%, transparent 60%);
+  opacity: 0;
+}
+
+.fb-leaf-shade.back {
+  background: linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%);
+  opacity: 0;
+}
+
+/* ─── Loading Overlay ────────────────────────────────────────────────────────── */
+.fb-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(10, 17, 34, 0.94);
+  backdrop-filter: blur(6px);
+  z-index: 30;
+  transition: opacity 0.35s ease;
+  border-radius: 4px;
+}
+
+.fb-loading.fb-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fb-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3.5px solid rgba(249, 115, 22, 0.2);
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: fbSpin 0.75s linear infinite;
+}
+
+@keyframes fbSpin {
+  to { transform: rotate(360deg); }
+}
+
+#fbLoadingText {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Controls Bar ───────────────────────────────────────────────────────────── */
+.fb-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 18px;
+  border-radius: 100px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.fb-controls-sep {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 4px;
+}
+
+.fb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding: 9px 18px;
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fb-btn:hover:not(:disabled) {
+  background: #f97316;
+  border-color: #f97316;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(249, 115, 22, 0.35);
+}
+
+.fb-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.fb-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fb-icon-btn:hover:not(:disabled) {
+  background: rgba(249, 115, 22, 0.25);
+  border-color: #f97316;
+  color: #f97316;
+  transform: translateY(-1px);
+}
+
+.fb-icon-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.fb-info-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 160px;
+}
+
+.fb-counter {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.fb-progress-bar {
+  width: 140px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.fb-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #f97316, #fbbf24);
+  border-radius: 100px;
+  transition: width 0.3s ease;
+}
+
+/* ─── Keyboard Hint ──────────────────────────────────────────────────────────── */
+.fb-kbd-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+}
+
+.fb-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ─── Thumbnails Strip ───────────────────────────────────────────────────────── */
+.fb-thumbs-outer {
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+}
+
+.fb-thumbs-label {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.fb-thumbs-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(249, 115, 22, 0.4) transparent;
+}
+
+.fb-thumbs-scroll::-webkit-scrollbar {
+  height: 5px;
+}
+.fb-thumbs-scroll::-webkit-scrollbar-thumb {
+  background: rgba(249, 115, 22, 0.4);
+  border-radius: 10px;
+}
+
+.fb-thumb {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 8px;
+  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.fb-thumb:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(249, 115, 22, 0.4);
+  transform: translateY(-2px);
+}
+
+.fb-thumb.active {
+  border-color: #f97316;
+  background: rgba(249, 115, 22, 0.12);
+}
+
+.fb-thumb canvas {
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.fb-thumb-label {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.fb-thumb.active .fb-thumb-label {
+  color: #f97316;
+}
+
+/* ─── Fullscreen Mode ────────────────────────────────────────────────────────── */
+.fb-scene.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(5, 8, 18, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fb-scene.is-fullscreen .fb-book-outer {
+  max-height: 85vh;
+}

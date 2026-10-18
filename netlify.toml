@@ -1,0 +1,46 @@
+# Configuration Netlify pour le Site Web Officiel CIPEM 2026
+
+[build]
+  publish = "."
+
+# En-têtes HTTP de sécurité, performance et compatibilité PDF.js
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Access-Control-Allow-Origin = "*"
+
+# Configuration spécifique pour le streaming des catalogues PDF haute définition
+[[headers]]
+  for = "*.pdf"
+  [headers.values]
+    Content-Type = "application/pdf"
+    Accept-Ranges = "bytes"
+    Cache-Control = "public, max-age=86400"
+    Access-Control-Allow-Origin = "*"
+
+# Mise en cache optimale des scripts et styles
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+# Mise en cache des images
+[[headers]]
+  for = "/vertical_images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
+
+[[headers]]
+  for = "/extracted_images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"

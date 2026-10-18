@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIPEM — Catalogue General des Formations 2026 | Centre Agree N 11-1372-15</title>
+  <meta name="description" content="Catalogue officiel interactif 2026 des formations professionnelles continues de CIPEM. 35 domaines, +410 formations certifiantes en ingenierie, technique et management a Tunis.">
+  <link rel="stylesheet" href="web_style.css">
+  <link rel="stylesheet" href="flipbook.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+
+  <!-- Top Notice Bar -->
+  <div class="top-notice-bar">
+    <div class="container">
+      <div class="top-notice-left">
+        <span class="badge-official" id="topBadgeOfficial">Centre Agréé • N° 11-1372-15</span>
+        <span class="top-notice-sep"></span>
+        <span class="top-notice-text" id="topNoticeText">
+          Formation Continue
+          <span style="margin:0 4px; opacity:0.3">|</span>
+          Imputation légale TFP
+        </span>
+      </div>
+      <div class="top-notice-right">
+        <a href="tel:+21671254978" class="top-contact-link">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          +216 71 254 978
+        </a>
+        <a href="mailto:formation@cipem.com.tn" class="top-contact-link">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          formation@cipem.com.tn
+        </a>
+        <a href="https://www.facebook.com/cipem.com.tn" target="_blank" rel="noopener noreferrer" class="top-contact-link">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          fb.com/cipem.com.tn
+        </a>
+        <span class="top-contact-link" style="cursor:default;" id="topNoticeAddress">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          24 rue Cyrus le grand, 1002 Tunis
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-brand">
+        <img src="extracted_images/cipem_official_logo.png" alt="CIPEM Logo">
+        <div class="nav-divider"></div>
+        <div class="nav-brand-text">
+          <span class="nav-brand-title">CIPEM Formations</span>
+          <span class="nav-brand-subtitle">Chemical Industrial and Petroleum Engineering</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="active" id="navLinkHome">Accueil</a></li>
+        <li><a href="#catalogue" id="navLinkCatalogue">Catalogue 2026</a></li>
+        <li><a href="#flipbook" id="navLinkFlipbook">Le Livre</a></li>
+        <li><a href="#about" id="navLinkAbout">Le Centre</a></li>
+        <li><a href="#contact" id="navLinkContact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="lang-switch-wrap" role="group" aria-label="Langue / Language">
+          <button id="langBtnFr" class="lang-btn active" data-lang="fr" title="Version Française">FR</button>
+          <span class="lang-sep">|</span>
+          <button id="langBtnEn" class="lang-btn" data-lang="en" title="English Version">EN</button>
+        </div>
+        <a href="CIPEM - Catalogue Formations 2026 - Premium Visual Edition.pdf" 
+           target="_blank" 
+           class="btn btn-outline" 
+           id="navPdfBtn" 
+           data-href-fr="CIPEM - Catalogue Formations 2026 - Premium Visual Edition.pdf"
+           data-href-en="CIPEM - Training Catalogue 2026 - Premium Visual Edition.pdf"
+           download>
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span id="navPdfText">Télécharger PDF</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+
+      <!-- Left: Main Content -->
+      <div class="hero-content">
+        <div class="hero-pill">
+          <div class="hero-pill-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <span id="heroPillText">Catalogue des Formations Professionnelles 2026</span>
+        </div>
+
+        <h1 class="hero-title" id="heroTitle">
+          Excellence Technique,<br>Industrielle et <span>Managériale</span>
+        </h1>
+
+        <p class="hero-desc" id="heroDesc">
+          Partenaire de référence pour la montée en compétences des équipes industrielles.
+          <strong>35 domaines métiers</strong> et <strong>+410 formations certifiantes</strong>
+          en sessions <strong>Inter-Entreprises</strong> ou <strong>Intra-Entreprise</strong> sur site.
+        </p>
+
+        <!-- Live Search Box -->
+        <div class="hero-search-wrapper">
+          <span class="hero-search-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="text" id="heroSearchInput" class="hero-search-input" placeholder="Formation, norme, logiciel... (ex. AutoCAD, HYSYS, NF C 18-510)">
+          <button class="hero-search-btn" id="heroSearchBtn" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+            Rechercher
+          </button>
+        </div>
+
+        <!-- Quick Search Suggestions -->
+        <div class="search-quick-tags">
+          <span class="search-tag-label" id="searchTagLabel">Populaires :</span>
+          <button class="search-tag" data-query="NF C 18-510">NF C 18-510</button>
+          <button class="search-tag" data-query="AutoCAD">AutoCAD</button>
+          <button class="search-tag" data-query="HYSYS">HYSYS</button>
+          <button class="search-tag" data-query="HSE">HSE</button>
+          <button class="search-tag" data-query="SolidWorks">SolidWorks</button>
+          <button class="search-tag" data-query="Photovoltaïque">Photovoltaïque</button>
+          <button class="search-tag" data-query="Marchés Publics">Marchés Publics</button>
+        </div>
+      </div>
+
+      <!-- Right: Side Panel -->
+      <div class="hero-side-panel">
+
+        <!-- Accreditation Card -->
+        <div class="hero-accreditation-card">
+          <div class="hero-accred-badge" id="heroAccredBadge">
+            <span class="hero-accred-badge-dot"></span>
+            <span id="heroAccredBadgeText">Centre Officiel Agréé d’État</span>
+          </div>
+          <div class="hero-accred-num">N&deg;&nbsp;11-1372-15</div>
+          <div class="hero-accred-label" id="heroAccredLabel">
+            <strong>Agrément Formation Continue</strong>
+            Ministère de la Formation Professionnelle &mdash; Tunisie
+          </div>
+          <div style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08);">
+            <div id="heroTfpTitle" style="font-size:0.75rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; font-weight:700;">Imputation TFP</div>
+            <div id="heroTfpDesc" style="font-size:0.85rem; color:rgba(255,255,255,0.65); line-height:1.55;">Actions éligibles à l’imputation légale sur la Taxe de Formation Professionnelle.</div>
+          </div>
+        </div>
+
+        <!-- Stats Grid 2x2 -->
+        <div class="hero-stats-grid">
+          <div class="hero-stat-card">
+            <div class="hero-stat-num">35</div>
+            <div class="hero-stat-label" id="statLabel1">Domaines Métiers</div>
+            <div class="hero-stat-sub" id="statSub1">Technique et Management</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-num">+410</div>
+            <div class="hero-stat-label" id="statLabel2">Formations</div>
+            <div class="hero-stat-sub" id="statSub2">Certifiantes et opérationnelles</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-num" id="statNum3">Inter</div>
+            <div class="hero-stat-label" id="statLabel3">et Intra</div>
+            <div class="hero-stat-sub" id="statSub3">En centre ou sur site</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label" id="statLabel4">Conforme TFP</div>
+            <div class="hero-stat-sub" id="statSub4">Agrément N° 11-1372-15</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter and Search Bar (Single Line) -->
+  <section class="filter-section" id="catalogue">
+    <div class="container">
+      <div class="filter-bar">
+        
+        <!-- Barre de recherche à gauche -->
+        <div class="catalogue-search-bar">
+          <div class="catalogue-search-input-wrap">
+            <svg class="catalogue-search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input 
+              type="text" 
+              id="catalogueSearchInput" 
+              class="catalogue-search-input" 
+              placeholder="Rechercher une formation, norme..."
+              autocomplete="off"
+            >
+            <button id="catalogueSearchClear" class="catalogue-search-clear-btn" style="display:none;" title="Effacer la recherche">✕</button>
+          </div>
+        </div>
+
+        <!-- Pôle Tabs -->
+        <div class="pole-tabs">
+          <button class="pole-tab active" data-pole="0" id="tabPole0">Tous les Domaines (35)</button>
+          <button class="pole-tab" data-pole="1" id="tabPole1">Pôle Technique et Ingénierie (22)</button>
+          <button class="pole-tab" data-pole="2" id="tabPole2">Pôle Management et Finance (13)</button>
+        </div>
+
+        <!-- Compteur de résultats sur la même ligne -->
+        <div class="results-count-badge" id="resultsCount">
+          Affichage des domaines...
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Domains Grid Section -->
+  <section class="domains-section">
+    <div class="container">
+      <div class="domains-grid" id="domainsGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ FLIPBOOK SECTION ══════════════════════ -->
+  <section class="flipbook-section" id="flipbook" aria-label="Feuilleter le catalogue">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="fb-header">
+        <div class="fb-badge" id="fbBadge">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          Feuilleter le Catalogue
+        </div>
+        <h2 class="fb-title" id="fbTitle">Le Catalogue en <em>Livre Interactif</em></h2>
+        <p class="fb-desc" id="fbDesc">Feuilletez notre catalogue de formations comme un vrai livre. Cliquez sur les pages ou utilisez les flèches pour naviguer page par page.</p>
+      </div>
+
+      <div class="fb-scene-wrap">
+
+        <!-- 3D Book Scene -->
+        <div class="fb-scene" id="fbScene">
+          <div class="fb-book-outer">
+            <!-- Hardcover casing frame with luxury leather border & metallic corners -->
+            <div class="fb-casing" id="fbCasing">
+              <!-- Stacked paper thickness edges -->
+              <div class="fb-edge-stack left"></div>
+              <div class="fb-edge-stack right"></div>
+
+              <!-- Silk ribbon bookmark -->
+              <div class="fb-ribbon"></div>
+
+              <div class="fb-book" id="fbBook">
+
+                <!-- Left page -->
+                <div class="fb-page-container fb-page-left" id="fbPageLeft" title="Cliquer pour reculer">
+                  <canvas id="fbLeft"></canvas>
+                  <div class="fb-page-curvature left"></div>
+                  <div class="fb-page-corner curl-left" id="fbCurlLeft"></div>
+                </div>
+
+                <!-- Spine / Reliure centrale -->
+                <div class="fb-spine" id="fbSpine">
+                  <div class="fb-spine-stitch"></div>
+                </div>
+
+                <!-- Right page -->
+                <div class="fb-page-container fb-page-right" id="fbPageRight" title="Cliquer pour avancer">
+                  <canvas id="fbRight"></canvas>
+                  <div class="fb-page-curvature right"></div>
+                  <div class="fb-page-corner curl-right" id="fbCurlRight"></div>
+                </div>
+
+                <!-- Cast Shadow on Left Page during Turn -->
+                <div class="fb-cast-shadow" id="fbCastShadow"></div>
+
+                <!-- Flip animation layer (positioned dynamically by JS) -->
+                <div class="fb-flip" id="fbFlip">
+                  <div class="fb-flip-front">
+                    <canvas id="fbFlipFront"></canvas>
+                    <div class="fb-leaf-shade front" id="fbShadeFront"></div>
+                  </div>
+                  <div class="fb-flip-back">
+                    <canvas id="fbFlipBack"></canvas>
+                    <div class="fb-leaf-shade back" id="fbShadeBack"></div>
+                  </div>
+                </div>
+
+                <!-- Loading overlay -->
+                <div class="fb-loading" id="fbLoading">
+                  <div class="fb-spinner"></div>
+                  <span id="fbLoadingText">Chargement du catalogue haute définition...</span>
+                </div>
+
+              </div><!-- /.fb-book -->
+            </div><!-- /.fb-casing -->
+          </div><!-- /.fb-book-outer -->
+        </div><!-- /.fb-scene -->
+
+        <!-- Controls -->
+        <div class="fb-controls">
+          <button class="fb-icon-btn" id="fbFirst" title="Première page (Couverture)" aria-label="Première page">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+          </button>
+
+          <button class="fb-btn" id="fbPrev" disabled aria-label="Page précédente">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            <span id="fbPrevText">Précédent</span>
+          </button>
+
+          <div class="fb-info-block">
+            <span class="fb-counter" id="fbCounter">Couverture</span>
+            <div class="fb-progress-bar">
+              <div class="fb-progress-fill" id="fbProgressFill"></div>
+            </div>
+          </div>
+
+          <button class="fb-btn" id="fbNext" aria-label="Page suivante">
+            <span id="fbNextText">Suivant</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+
+          <button class="fb-icon-btn" id="fbLast" title="Dernière page" aria-label="Dernière page">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+          </button>
+
+          <div class="fb-controls-sep"></div>
+
+          <button class="fb-icon-btn" id="fbSoundBtn" title="Effet sonore de feuilletage (Activé)" aria-label="Son">
+            <svg id="fbSoundIcon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+          </button>
+
+          <button class="fb-icon-btn" id="fbFullscreenBtn" title="Plein écran" aria-label="Plein écran">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+          </button>
+        </div>
+
+        <!-- Keyboard hint -->
+        <div class="fb-kbd-hint" id="fbKbdHint">
+          <span class="fb-key">&#8592;</span>
+          <span class="fb-key">&#8594;</span>
+          <span id="fbKbdHintText">pour naviguer entre les pages</span>
+        </div>
+
+        <!-- Thumbnail strip -->
+        <div class="fb-thumbs-outer">
+          <div class="fb-thumbs-label" id="fbThumbsLabel">Aperçu des pages</div>
+          <div class="fb-thumbs-scroll" id="fbThumbsScroll"></div>
+        </div>
+
+      </div><!-- /.fb-scene-wrap -->
+    </div><!-- /.container -->
+  </section><!-- /#flipbook -->
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-badge" id="aboutBadge">À PROPOS DU CIPEM</span>
+          <h2 id="aboutTitle">Une Structure Pluridisciplinaire de Référence</h2>
+          <p id="aboutP1">
+            Le <strong>CIPEM</strong> (Chemical Industrial and Petroleum Engineering and Management) est une structure 
+            d’ingénierie et de formation professionnelle continue agréée sous le numéro <strong>11-1372-15</strong>.
+          </p>
+          <p id="aboutP2">
+            Nous accompagnons les grands comptes industriels, les compagnies énergétiques et pétrolières ainsi que les 
+            entreprises publiques et privees dans la qualification, la montée en compétences et la certification de leurs equipes.
+          </p>
+          <div style="margin-top: 24px;">
+            <a href="#catalogue" class="btn btn-primary" id="aboutCta">Explorer toutes les formations</a>
+          </div>
+        </div>
+        <div>
+          <img src="vertical_images/oil_gas.jpg" alt="Ingenierie CIPEM" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 40px rgba(15,42,74,0.15);">
+        </div>
+      </div>
+
+      <!-- Feature Boxes -->
+      <div class="about-features-grid">
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 id="featTitle1">Modalités Pédagogiques</h3>
+          <p id="featDesc1">Formations Inter-Entreprises a Tunis ou Intra-Entreprise directement sur vos chantiers, usines et bases opérationnelles avec programmes 100% sur mesure.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+          </div>
+          <h3 id="featTitle2">Corps Professoral d’Experts</h3>
+          <p id="featDesc2">Formateurs seniors et ingénieurs praticiens issus du milieu industriel. Pédagogie orientée cas réels, schémas industriels et normes (NF, API, ISO, ASME).</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <h3 id="featTitle3">Valorisation et Imputation TFP</h3>
+          <p id="featDesc3">Délivrance d’une attestation officielle CIPEM à chaque participant. Actions éligibles aux financements et ristournes légales de la Taxe de Formation Professionnelle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact et Coordonnées Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge" id="contactBadge">CONTACT ET INFORMATIONS ADMINISTRATIVES</span>
+        <h2 class="section-title" id="contactTitle">Informations et Secrétariat Pédagogique</h2>
+        <p class="section-desc" id="contactDesc">Pour toute information sur les programmes, les plannings ou l’organisation de sessions spécifiques, notre équipe est à votre écoute.</p>
+      </div>
+
+      <div class="contact-cards-grid">
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="6" x2="15" y2="6"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+          </div>
+          <div class="contact-card-title" id="contactCardTitle1">Siège Social</div>
+          <div class="contact-card-text" id="contactCardBody1">
+            24 rue Cyrus le grand<br>
+            le Passage, 1002 Tunis<br>
+            Tunisie
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-card-title" id="contactCardTitle2">Téléphone et Mobile</div>
+          <div class="contact-card-text" id="contactCardBody2">
+            Fixe : <strong>+216 71 254 978</strong><br>
+            Mobile : <strong>+216 98 645 545</strong><br>
+            Fax : +216 71 353 078
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-card-title" id="contactCardTitle3">Emails et Présence Web</div>
+          <div class="contact-card-text" id="contactCardBody3">
+            Formations : <strong><a href="mailto:formation@cipem.com.tn" style="color:var(--orange); text-decoration:none;">formation@cipem.com.tn</a></strong><br>
+            Direction : <strong><a href="mailto:Cipem@cipem.com.tn" style="color:inherit; text-decoration:none;">Cipem@cipem.com.tn</a></strong><br>
+            Facebook : <strong><a href="https://www.facebook.com/cipem.com.tn" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">fb.com/cipem.com.tn</a></strong><br>
+            Portail Web : <strong><a href="https://www.cipem.com.tn" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">www.cipem.com.tn</a></strong>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="contact-card-title" id="contactCardTitle4">Agrément et Fiscalité</div>
+          <div class="contact-card-text" id="contactCardBody4">
+            Agrément : <strong>N° 11-1372-15</strong><br>
+            Matricule Fiscal : 1322330N/A/M/000<br>
+            Registre de Commerce : 1322330N
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fixed Running Footer Bar -->
+  <footer class="footer-fixed-bar">
+    <div class="container">
+      <span class="footer-official-text" id="footerOfficialText">
+        <strong>CIPEM</strong> &bull; Numéro d'Enregistrement : 11-1372-15 &bull; 24 rue Cyrus le grand le Passage, 1002 Tunis &bull; +216 71 254 978 &bull; formation@cipem.com.tn &bull; Cipem@cipem.com.tn &bull; fb.com/cipem.com.tn &bull; www.cipem.com.tn
+      </span>
+    </div>
+  </footer>
+
+  <!-- Course Detail Modal -->
+  <div class="modal-overlay" id="courseModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-header-title" id="modalDomainTitle">Titre du Domaine</h2>
+          <p class="modal-header-sub" id="modalDomainSub">Sous-titre et informations</p>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" title="Fermer">x</button>
+      </div>
+      <div class="modal-body" id="modalCoursesBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="web_catalogue_data.js"></script>
+  <script src="web_app.js"></script>
+
+  <!-- PDF.js and Interactive Flipbook -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
+  <script src="flipbook.js"></script>
+</body>
+</html>
