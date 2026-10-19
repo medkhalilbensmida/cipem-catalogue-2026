@@ -8,8 +8,8 @@
 
   /* ─── PDF Source URLs ─────────────────────────────────────────────────────── */
   const PDF_URLS = {
-    fr: 'CIPEM - Catalogue Formations 2026 - Premium Visual Edition.pdf',
-    en: 'CIPEM - Training Catalogue 2026 - Premium Visual Edition.pdf'
+    fr: 'CIPEM - Catalogue Formations 2026 - Premium Visual Edition.pdf?v=2026.4',
+    en: 'CIPEM - Training Catalogue 2026 - Premium Visual Edition.pdf?v=2026.4'
   };
 
   /* ─── State ───────────────────────────────────────────────────────────────── */
